@@ -20,6 +20,16 @@ import drag from "v-drag";
 // const drag = require("v-drag");
 Vue.use(drag);
 
+import Vue2TouchEvents from 'vue2-touch-events'
+Vue.use(Vue2TouchEvents)
+
+import VScrollLock from 'v-scroll-lock' 
+Vue.use(VScrollLock, {
+  bodyScrollOptions: {
+    reserveScrollBarGap: true,
+  },
+})
+
 // import vuetify from './plugins/vuetify';
 // import tinymce from 'tinymce';
 

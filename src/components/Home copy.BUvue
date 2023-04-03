@@ -1,9 +1,10 @@
 <template>
 <div>
-  <div id="containerId" class="container-full-bg padding0 d-flex justify-content-center relatief"> 
-    <video id="vidMuurVallenId" ref="vidMuurVallen" controls src="https://vuestoragestatictof.blob.core.windows.net/pics/SneeuwbalMuur02.mp4" preload="auto"></video>
+  <div id="containerId" class="container-full-bg hoogte padding0 d-flex justify-content-center relatief">
+    <div id="muurVallen"></div>
   </div>
-  <div v-drag="{ axis: 'x, y', handle: '#ballenGooier' }" id="ballenGooier" type="button" @mouseup="gooien()" class="ui-widget-content relative">
+  <div v-drag="{ axis: 'x, y', handle: '#ballenGooier' }"
+  id="ballenGooier" type="button" @mouseup="gooien()" class="ui-widget-content relative">
     <div id="vizierID" class="absolute"></div>
   </div>
 </div> 
@@ -15,7 +16,6 @@ export default {
   name: 'Winter',
   data() {
     return {
-      img: null,
       snelheid: 120,
       StartStop: null,
       intervalId: 0,
@@ -23,8 +23,7 @@ export default {
       vizierIDOffsetTop: 0,
       vizierIDOffsetLeft: 0,
       telAfdrukken: 0,
-      // maxAfdrukken: 6,
-      maxAfdrukken: 1,
+      maxAfdrukken: 6,
       windowBreedte: null, 
     };
   },
@@ -32,41 +31,36 @@ export default {
     this.windowBreedte = window.innerWidth;
     const body = document.body;
     body.style.position = 'fixed';
-// Van ChatGPT:
-this.img = new Image();
-    this.img.onload = () => {
-      console.log("Afbeelding geladen!");
-    };
-    this.img.onerror = () => {
-      console.log("Fout bij het laden van de afbeelding!");
-    };
-    this.img.src = "https://vuestoragestatictof.blob.core.windows.net/pics/0001.png";
+
   },
   mounted() {
     window.addEventListener("keypress", e => {
-      if(String.fromCharCode(e.keyCode) == 'x') {
+      if(String.fromCharCode(e.keyCode) == 'x'){
         this.maxAfdrukken++;
-      } else if(String.fromCharCode(e.keyCode) == 'y') {
+      }else if(String.fromCharCode(e.keyCode) == 'y'){
         this.maxAfdrukken--;
-      } else if(String.fromCharCode(e.keyCode) == 'r') {
+      }else if(String.fromCharCode(e.keyCode) == 'r'){
         location.reload();
       }
     });
-    const videoY = this.$refs.vidMuurVallen;
-    let intervalId;
-    intervalId = setInterval(() => {
-      if (videoY.currentTime >= 6.03) {
-        videoY.pause();
-        clearInterval(intervalId);
-        videoY.style.zIndex = "-1";
-        document.getElementById('containerId').style.backgroundImage = "url('https://vuestoragestatictof.blob.core.windows.net/pics/snowTransp02.gif'), url('https://vuestoragestatictof.blob.core.windows.net/pics/0160.png')";
-      }
-    }, 100);
   },
   methods: {
     muurVallen: function() {
-      let vidMuurVallenVar = document.getElementById("vidMuurVallenId")
-      vidMuurVallenVar.play();
+    document.getElementById('containerId').style.backgroundImage = "url('https://vuestoragestatictof.blob.core.windows.net/pics/SneeuwbalMuur02.mp4'), url('https://vuestoragestatictof.blob.core.windows.net/pics/SneeuwLandschap02.jpg')";
+    document.getElementById('containerId').style.backgroundSize="100%";
+    document.getElementById('containerId').style.backgroundRepeat="no-repeat";
+    let frameHeight = 364;
+    let frames = 15;
+    let frame = 0;
+    let divtof = document.getElementById("muurVallen");
+    this.StartStop = setInterval(function () {
+				if (frame == 14 ) {
+					clearInterval();
+				} else {
+					let frameOffset = (++frame % frames) * -frameHeight;
+					divtof.style.backgroundPosition = "0px " + frameOffset + "px";  
+				}
+      }, 200);
     },
     gooien: async function ()
     {
@@ -154,20 +148,9 @@ this.img = new Image();
 </script>
 
 <style scoped>
-  #containerId {
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-  }
-
-  #vidMuurVallenId {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* opacity: .5; */
+  .hoogte {
+    min-height: 600px;
+    background-color: #7798c1;
   }
   #ballenGooier {
     background-image: url("../assets/SneeuwbalGooien3.png");
@@ -208,6 +191,16 @@ this.img = new Image();
     94%  {left:275px; top:-15px;}	
     100% {left:250px; top:-30px;}
   }
+/* @media screen and (min-width: 801px) {
+  #muurVallen {
+      background-image: url("https://vuestoragestatictof.blob.core.windows.net/pics/0001.png");
+      background-repeat: no-repeat;
+      height: 300px;
+      width: 1903px;
+      transform: scale(1.59,1.59);
+      transform-origin:top;
+  }
+} */
 @media screen and (min-width: 801px) {
   #muurVallen {
       background-image: url("https://vuestoragestatictof.blob.core.windows.net/pics/0001.png");
@@ -218,7 +211,7 @@ this.img = new Image();
       background-position: center center;
   }
 }
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
   #muurVallen {
       background-image: url("../assets/WallMobile800w.png");
       background-repeat: no-repeat;
@@ -227,6 +220,15 @@ this.img = new Image();
       transform: scale(1.59,1.59);
       transform-origin:center;
   }
+} */
+@media screen and (min-width: 801px) {
+#muurVallen {
+background-image: url("https://vuestoragestatictof.blob.core.windows.net/pics/0001.png");
+background-repeat: no-repeat;
+height: 100%;
+width: 100%;
+background-size: cover;
+background-position: center center;
 }
-
+}
 </style>

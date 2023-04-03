@@ -71,7 +71,7 @@ To bundle TinyMCE using a module loader (such as Webpack and Browserify), see Us
     >
     </editor2>
       <div class="col-md-7" style="text-align: right">
-    <button
+    <!-- <button
       id="fetchen"
       type="button"
       class="btn btn-primary"
@@ -79,7 +79,7 @@ To bundle TinyMCE using a module loader (such as Webpack and Browserify), see Us
       @click="fetchen()"
     >
       Fetch
-    </button>
+    </button> -->
     <button
       id="bewaren"
       type="button"
@@ -125,27 +125,27 @@ To bundle TinyMCE using a module loader (such as Webpack and Browserify), see Us
       // tinyMCE.activeEditor.setContent('some')
     },
     methods: {
-      fetchen: function() {
-        this.myContent = tinymce.activeEditor.getContent();
-      },
-      initContent: function(){
-        tinyMCE.editors[0].setContent(this.blog.title)
-      },
-      initContent2: function(){
-        tinyMCE.editors[1].setContent(this.blog.body)
-      },
-      save: async function() {
-        //Title is filled with the slug???, so.....:
-        this.blog.title, this.blog.slug = tinyMCE.editors[0].getContent();
-        this.blog.body = tinyMCE.editors[1].getContent();
+      // fetchen: function() {
+      //   this.myContent = tinymce.activeEditor.getContent();
+      // },
+      // initContent: function(){
+      //   tinyMCE.editors[0].setContent(this.blog.title)
+      // },
+      // initContent2: function(){
+      //   tinyMCE.editors[1].setContent(this.blog.body)
+      // },
+      // save: async function() {
+      //   //Title is filled with the slug???, so.....:
+      //   this.blog.title, this.blog.slug = tinyMCE.editors[0].getContent();
+      //   this.blog.body = tinyMCE.editors[1].getContent();
 
-        this.isSuccessful = await updateVersion(this.tempUrl, this.blog, this.blog.id);
-        if (this.isSuccessful === true) {
-          // alert('gelukt :-)');
-        } else {
-          // alert('Mislukt :-(');
-        }
-      },
+      //   this.isSuccessful = await updateVersion(this.tempUrl, this.blog, this.blog.id);
+      //   if (this.isSuccessful === true) {
+      //     // alert('gelukt :-)');
+      //   } else {
+      //     // alert('Mislukt :-(');
+      //   }
+      // },
     },
   }
 </script>

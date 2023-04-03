@@ -1,15 +1,10 @@
 <template>
   <div class="container-full-bg kleurtje hoogte padding0 d-flex justify-content-center relatief">
     <div class="relatief">
-      <img :key="reRenderKey" id="animation"/>
-        <a href="winter" class="button black buttonX">
-          Naar Winter thema
+        <a href="herfst" class="button black buttonX">
+          Naar Herfst thema
         </a>
-      <router-link :to="{name: 'herfstHQ'}" class="buttonY"/>
     </div>
-    <div id="pookjeId" class="absoluut">  
-      <input @input="poken()" @mouseup="flapRuitenwisser()" type="range" id="range" min="1" max="9" step="1" v-model="sliderValue" />
-    </div>  
   </div>
 </template>
 
@@ -91,6 +86,9 @@ export default {
 </script>
 
 <style scoped>
+.kleurtje{
+  background-image: url("../assets/zomer03.png");
+}
 #animation {
   background-image: url("../assets/film04.png");
 }
