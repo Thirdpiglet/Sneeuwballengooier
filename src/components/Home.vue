@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="containerId" class="container-full-bg padding0 d-flex justify-content-center relatief"> 
-    <video id="vidMuurVallenId" ref="vidMuurVallen" controls src="https://vuestoragestatictof.blob.core.windows.net/pics/SneeuwbalMuur02.mp4" preload="auto"></video>
+    <video id="vidMuurVallenId" ref="vidMuurVallen" controls src="https://vuestoragestatictof.blob.core.windows.net/pics/SneeuwbalMuur03.mp4" preload="auto"></video>
   </div>
   <div v-drag="{ axis: 'x, y', handle: '#ballenGooier' }" id="ballenGooier" type="button" @mouseup="gooien()" class="ui-widget-content relative">
     <div id="vizierID" class="absolute"></div>
@@ -59,7 +59,7 @@ this.img = new Image();
         videoY.pause();
         clearInterval(intervalId);
         videoY.style.zIndex = "-1";
-        document.getElementById('containerId').style.backgroundImage = "url('https://vuestoragestatictof.blob.core.windows.net/pics/snowTransp02.gif'), url('https://vuestoragestatictof.blob.core.windows.net/pics/0160.png')";
+        document.getElementById('containerId').style.backgroundImage = "url('https://vuestoragestatictof.blob.core.windows.net/pics/snowTransp02.gif')";
       }
     }, 100);
   },
@@ -154,6 +154,33 @@ this.img = new Image();
 </script>
 
 <style scoped>
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
   #containerId {
     height: 100vh;
     width: 100vw;
